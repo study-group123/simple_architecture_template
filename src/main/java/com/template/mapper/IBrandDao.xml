@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.template.dao.IBrandDao" >
+  <resultMap id="BaseResultMap" type="com.template.entity.Brand" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="brand_code" property="brandCode" jdbcType="VARCHAR" />
+    <result column="brand_type" property="brandType" jdbcType="TINYINT" />
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+    <result column="ch_name" property="chName" jdbcType="VARCHAR" />
+    <result column="en_name" property="enName" jdbcType="VARCHAR" />
+    <result column="brand_prefix_letter" property="brandPrefixLetter" jdbcType="VARCHAR" />
+    <result column="logo_id" property="logoId" jdbcType="VARCHAR" />
+    <result column="expire_date" property="expireDate" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="active" property="active" jdbcType="TINYINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="update_user_name" property="updateUserName" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, brand_code, brand_type, brand_name, ch_name, en_name, brand_prefix_letter, logo_id, 
+    expire_date, status, active, create_user_id, create_user_name, create_time, update_user_id, 
+    update_user_name, update_time, version
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_brand
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_brand
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.template.entity.Brand" >
+    insert into t_brand (id, brand_code, brand_type, 
+      brand_name, ch_name, en_name, 
+      brand_prefix_letter, logo_id, expire_date, 
+      status, active, create_user_id, 
+      create_user_name, create_time, update_user_id, 
+      update_user_name, update_time, version
+      )
+    values (#{id,jdbcType=BIGINT}, #{brandCode,jdbcType=VARCHAR}, #{brandType,jdbcType=TINYINT}, 
+      #{brandName,jdbcType=VARCHAR}, #{chName,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR}, 
+      #{brandPrefixLetter,jdbcType=VARCHAR}, #{logoId,jdbcType=VARCHAR}, #{expireDate,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{active,jdbcType=TINYINT}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=VARCHAR}, 
+      #{updateUserName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.template.entity.Brand" >
+    insert into t_brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="brandCode != null" >
+        brand_code,
+      </if>
+      <if test="brandType != null" >
+        brand_type,
+      </if>
+      <if test="brandName != null" >
+        brand_name,
+      </if>
+      <if test="chName != null" >
+        ch_name,
+      </if>
+      <if test="enName != null" >
+        en_name,
+      </if>
+      <if test="brandPrefixLetter != null" >
+        brand_prefix_letter,
+      </if>
+      <if test="logoId != null" >
+        logo_id,
+      </if>
+      <if test="expireDate != null" >
+        expire_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="brandCode != null" >
+        #{brandCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brandType != null" >
+        #{brandType,jdbcType=TINYINT},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="chName != null" >
+        #{chName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandPrefixLetter != null" >
+        #{brandPrefixLetter,jdbcType=VARCHAR},
+      </if>
+      <if test="logoId != null" >
+        #{logoId,jdbcType=VARCHAR},
+      </if>
+      <if test="expireDate != null" >
+        #{expireDate,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="active != null" >
+        #{active,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.template.entity.Brand" >
+    update t_brand
+    <set >
+      <if test="brandCode != null" >
+        brand_code = #{brandCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brandType != null" >
+        brand_type = #{brandType,jdbcType=TINYINT},
+      </if>
+      <if test="brandName != null" >
+        brand_name = #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="chName != null" >
+        ch_name = #{chName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        en_name = #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandPrefixLetter != null" >
+        brand_prefix_letter = #{brandPrefixLetter,jdbcType=VARCHAR},
+      </if>
+      <if test="logoId != null" >
+        logo_id = #{logoId,jdbcType=VARCHAR},
+      </if>
+      <if test="expireDate != null" >
+        expire_date = #{expireDate,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="active != null" >
+        active = #{active,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.template.entity.Brand" >
+    update t_brand
+    set brand_code = #{brandCode,jdbcType=VARCHAR},
+      brand_type = #{brandType,jdbcType=TINYINT},
+      brand_name = #{brandName,jdbcType=VARCHAR},
+      ch_name = #{chName,jdbcType=VARCHAR},
+      en_name = #{enName,jdbcType=VARCHAR},
+      brand_prefix_letter = #{brandPrefixLetter,jdbcType=VARCHAR},
+      logo_id = #{logoId,jdbcType=VARCHAR},
+      expire_date = #{expireDate,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      active = #{active,jdbcType=TINYINT},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../Css/my.css" />
+	<link href="../assets/css/laydate.css" rel="stylesheet" type="text/css" />
+	
+	
+  
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+		.table{
+		   width:40%;
+		}
+		tr > td{
+		  width:20%;
+		}
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<form action="index.html" method="post" class="definewidth m10">
+<table class="table table-bordered table-hover m5" >
+    
+    <tr>
+        <td class="tableleft" >入库日期：</td>
+        <td><div id="test1" class="laydate-icon"></div><input type="hidden" name="inStockDate" /></td>
+    </tr>
+    <tr>
+        <td class="tableleft">入库单号：</td>
+        <td><input type="text" name="inStockNum"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">供应商：</td>
+        <td><input type="text" name="providerName"/><input type="hidden" name="providerId" /></td>
+    </tr>
+    <tr>
+        <td class="tableleft">试剂名称：</td>
+        <td><input type="text" name="reagentName"/><input type="hidden" name="reagentId" /></td>
+    </tr>
+    <tr>
+        <td class="tableleft">批号：</td>
+        <td><input type="text" name="remark"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">失效日期：</td>
+        <td><div id="day2" class="laydate-icon"></div><input type="hidden" name="effectiveDate" /></td>
+    </tr>
+    <tr>
+        <td class="tableleft">数量：</td>
+        <td><input type="text" name="remark"/></td>
+    </tr>
+	<tr>
+        <td class="tableleft">单价：</td>
+        <td><input type="text" name="remark"/></td>
+    </tr>
+  
+	<tr>
+        <td width="10%" class="tableleft">储存位置</td>
+        <td>
+            <select name="parentid" style="width:66%">
+				<option value='0'>成品库</option>
+				<option value='1' />耗材库</option>
+			</select>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button id="inStock" class="btn btn-primary" type="button">入库</button> 
+        </td>
+    </tr>
+</table>
+</form>
+<!------------------------------------------------------------------------------------------------------------------------------------------->
+
+ <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">选择供应商</h4>
+      </div>
+      <div class="modal-body">
+	     <!-- modal body start  -->
+        <form class=" " action="index.html" >  
+		    <table class="table table-bordered table-hover" style="width:100%">
+			   <tr class="">
+			      <td class="success" style="vertical-align : middle; "> 供应商名称：</td>
+				  <td class=""><input type="text" name="rolename" id="rolename"class="abc input-default" placeholder="" value=""></td>
+				  <td class=""><button type="button" class="btn btn-primary btn-sm" id='queryProvider' >查询</button> </td>
+				  <td class=""> <button type="button" class="btn btn-success btn-sm" id="addnew">新增供应商</button>
+				</div></td>
+				  
+			   <tr>
+			</table>
+		
+			
+			
+			</br>
+			<table class="table table-bordered table-hover" style="width:100%" >
+			<tr>
+				<th>供应商名称</th>
+				<th>联系人</th>
+				<th>Email</th>
+				<th>电话</th>
+				<th>移动电话</th>
+				
+			</tr>
+			 <tr ondblclick="assignProviderName('供应商1')">
+				<td>供应商1 <input type="hidden" name="providerId" value="123"/></td>
+				<td>张三</td>
+				<td>1003671336@qq.com</td>
+				<td>156182343788</td>
+				<td>156182343788</td>
+				
+			</tr>
+			</table>
+			
+		</form>
+		
+         <!-- modal body end  -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+   
+</div>
+<!------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="modal fade bs-example-modal-lg" id="reagentModal" tabindex="-1" role="dialog" aria-labelledby="reagentModalLabel" data-backdrop="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="reagentModalLabel">选择试剂</h4>
+      </div>
+      <div class="modal-body">
+	     <!-- modal body start  -->
+        <form class=" " action="index.html" >  
+		    <table class="table table-bordered table-hover" style="width:100%">
+			   <tr class="">
+			      <td class="success" style="vertical-align : middle; "> 试剂名称：</td>
+				  <td class=""><input type="text" name="rolename" id="rolename"class="abc input-default" placeholder="" value=""></td>
+				  <td class=""><button type="button" class="btn btn-primary btn-sm" id='queryReagent' >查询</button> </td>
+				  <td class=""> <button type="button" class="btn btn-success btn-sm" id="addnew">试剂库新增</button>
+				</div></td>
+				  
+			   <tr>
+			</table>
+		
+			
+			
+			</br>
+			<table class="table table-bordered table-hover" style="width:100%" >
+			<tr>
+				<th>试剂名称</th>
+				<th>规格</th>
+				<th>单位</th>
+				<th>产地</th>
+				<th>批准文号</th>
+				
+			</tr>
+			 <tr ondblclick="assignReagentName('试剂1 ')">
+				<td>试剂1 <input type="hidden" name="providerId" value="123"/></td>
+				<td>40*1</td>
+				<td>盒</td>
+				<td>潍坊</td>
+				<td>国药准(试)字H19980000</td>
+				
+			</tr>
+			</table>
+			
+		</form>
+		
+         <!-- modal body end  -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+   
+</div>
+<!------------------------------------------------------------------------------------------------------------------------------------------->
+	<script type="text/javascript" src="../Js/jquery.js"></script>
+    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap.js"></script>
+    <script type="text/javascript" src="../Js/ckform.js"></script>
+    <script type="text/javascript" src="../Js/common.js"></script>
+	<script type="text/javascript" src="../Js/laydate.js"></script>
+	<script type="text/javascript" src="../Js/util.js"></script>
+	<script type="text/javascript" src="../Js/nonCommon/in_stock.js"></script>
+
+</body>
+</html>
+<script>
+
+</script>
+<script>
+
+
+</script>
